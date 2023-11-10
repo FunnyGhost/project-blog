@@ -43,6 +43,7 @@ function CircularColorsDemo() {
     setTimeElapsed(0);
     clearInterval(intervalId);
     setIntervalId(0);
+    setIsPlaying(false);
   };
 
   return (
