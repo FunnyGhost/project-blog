@@ -19,13 +19,10 @@ const COLORS = [
 function CircularColorsDemo() {
   const id = useId();
   const [isPlaying, setIsPlaying] = useState(false);
-  const [selectedColor, setSelectedColor] = useState(COLORS[0]);
   const [intervalId, setIntervalId] = useState(0);
   const [timeElapsed, setTimeElapsed] = useState(0);
 
-  useEffect(() => {
-    setSelectedColor(COLORS[timeElapsed % COLORS.length]);
-  }, [timeElapsed]);
+  const selectedColor = COLORS[timeElapsed % COLORS.length];
 
   const onPlayClick = () => {
     setIsPlaying(true);
