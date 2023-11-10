@@ -19,27 +19,28 @@ const COLORS = [
 function CircularColorsDemo() {
   const id = useId();
   const [isPlaying, setIsPlaying] = useState(false);
-  const [intervalId, setIntervalId] = useState(0);
   const [timeElapsed, setTimeElapsed] = useState(0);
+
+  useEffect(() => {
+    if (!isPlaying) return;
+
+    const intervalId = setInterval(() => setTimeElapsed((oldValue) => oldValue + 1), 1000);
+
+    return () => clearInterval(intervalId);
+  });
 
   const selectedColor = COLORS[timeElapsed % COLORS.length];
 
   const onPlayClick = () => {
     setIsPlaying(true);
-    const newInterval = setInterval(() => setTimeElapsed((oldValue) => oldValue + 1), 1000);
-    setIntervalId(newInterval);
   };
 
   const onPauseClick = () => {
     setIsPlaying(false);
-    clearInterval(intervalId);
-    setIntervalId(0);
   };
 
   const onResetClick = () => {
     setTimeElapsed(0);
-    clearInterval(intervalId);
-    setIntervalId(0);
     setIsPlaying(false);
   };
 
