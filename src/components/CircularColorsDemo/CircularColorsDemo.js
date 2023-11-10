@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useId, useState } from 'react';
 import clsx from 'clsx';
 import { Play, Pause, RotateCcw } from 'react-feather';
+import { motion } from 'framer-motion';
 
 import Card from '@/components/Card';
 import VisuallyHidden from '@/components/VisuallyHidden';
@@ -16,6 +17,7 @@ const COLORS = [
 ];
 
 function CircularColorsDemo() {
+  const id = useId();
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedColor, setSelectedColor] = useState(COLORS[0]);
   const [intervalId, setIntervalId] = useState(0);
@@ -51,7 +53,7 @@ function CircularColorsDemo() {
 
           return (
             <li className={styles.color} key={index}>
-              {isSelected && <div className={styles.selectedColorOutline} />}
+              {isSelected && <motion.div layoutId={id} className={styles.selectedColorOutline} />}
               <div
                 className={clsx(styles.colorBox, isSelected && styles.selectedColorBox)}
                 style={{
