@@ -25,6 +25,7 @@
   "devDependencies": {
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.6",
-    "new-component": "5.0.2"
+    "new-component": "5.0.2",
+    "rss": "^1.2.2"
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BLOG_TITLE } from '@/constants';
+import { BLOG_TITLE, BLOG_DESCRIPTION } from '@/constants';
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -26,8 +26,8 @@ const monoFont = Spline_Sans_Mono({
 
 export async function generateMetadata() {
   return {
-    title: `${BLOG_TITLE}`,
-    description: 'A wonderful blog about JavaScript',
+    title: BLOG_TITLE,
+    description: BLOG_DESCRIPTION,
   };
 }
 

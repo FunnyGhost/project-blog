@@ -9,6 +9,7 @@ import VisuallyHidden from '@/components/VisuallyHidden';
 import styles from './Header.module.css';
 import Cookies from 'js-cookie';
 import { DARK_TOKENS, LIGHT_TOKENS, THEME_KEY } from '@/constants';
+import Link from 'next/link';
 
 function Header({ initialTheme, ...delegated }) {
   const [theme, setTheme] = useState(initialTheme);
@@ -32,7 +33,7 @@ function Header({ initialTheme, ...delegated }) {
       <Logo />
 
       <div className={styles.actions}>
-        <button className={styles.action}>
+        <Link href='/rss.xml' className={styles.action}>
           <Rss
             size='1.5rem'
             style={{
@@ -41,7 +42,7 @@ function Header({ initialTheme, ...delegated }) {
             }}
           />
           <VisuallyHidden>View RSS feed</VisuallyHidden>
-        </button>
+        </Link>
         <button className={styles.action} onClick={toggleTheme}>
           {theme === 'light' ? <Sun size='1.5rem' /> : <Moon size='1.5rem' />}
           <VisuallyHidden>Toggle dark / light mode</VisuallyHidden>
