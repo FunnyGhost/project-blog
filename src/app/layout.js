@@ -1,13 +1,15 @@
 import React from 'react';
-import { Work_Sans, Spline_Sans_Mono } from 'next/font/google';
-import clsx from 'clsx';
 
-import { LIGHT_TOKENS, DARK_TOKENS, BLOG_TITLE } from '@/constants';
+import { BLOG_TITLE } from '@/constants';
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import './styles.css';
 import RespectMotionConfig from '@/components/RespectMotionConfig';
+import { Work_Sans, Spline_Sans_Mono } from 'next/font/google';
+import { cookies } from 'next/headers';
+import clsx from 'clsx';
+import { DARK_TOKENS, LIGHT_TOKENS, THEME_KEY } from '@/constants';
 
 const mainFont = Work_Sans({
   subsets: ['latin'],
@@ -30,18 +32,17 @@ export async function generateMetadata() {
 }
 
 function RootLayout({ children }) {
-  // TODO: Dynamic theme depending on user preference
-  const theme = 'light';
+  const persistedTheme = cookies().get(THEME_KEY)?.value || 'light';
 
   return (
     <RespectMotionConfig>
       <html
         lang='en'
         className={clsx(mainFont.variable, monoFont.variable)}
-        data-color-theme={theme}
-        style={theme === 'light' ? LIGHT_TOKENS : DARK_TOKENS}>
+        data-color-theme={persistedTheme}
+        style={persistedTheme === 'light' ? LIGHT_TOKENS : DARK_TOKENS}>
         <body>
-          <Header theme={theme} />
+          <Header initialTheme={persistedTheme} />
           <main>{children}</main>
           <Footer />
         </body>
