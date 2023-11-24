@@ -1,0 +1,10 @@
+.wrapper {
+  margin: auto;
+  width: fit-content;
+  text-align: center;
+  margin-block-start: 6rem;
+}
+
+.wrapper h1 {
+  margin-block-end: 1em;
+}
